@@ -2,7 +2,8 @@
 
 return function(lfs)
 	local lfs = lfs 
-	local function attrdir(path, opt, hook_ok, hook_error)
+	local function attrdir(path, opt)
+		local hook_ok, hook_error = opt.hook_ok, hook_error
 		local depth = opt.depth
 		local wantedattr = opt.attr
 		for file in lfs.dir(path) do
@@ -13,7 +14,7 @@ return function(lfs)
 				--assert(type(attr) == "table")
 				if attr.mode == "directory" then
 					if not depth then hook_ok(subpath, attr.mode, attr) end
-					if not pcall(attrdir, subpath, opt, hook_ok, hook_error) then
+					if not pcall(attrdir, subpath, opt) then
 						hook_error(subpath, attr.mode or "", attr)
 					end
 					if depth then hook_ok(subpath, attr.mode, attr) end
