@@ -21,7 +21,7 @@ return function(find, ...)
 	end
 	
 	local function hookerr(f, mode, attr)
-		io.stderr:write(""..f..": Permission denied\n")
+		io.stderr:write(""..f..": Permission denied ?\n")
 	end
 	
 	return find(arg[1], {depth=true, attr=nil--[["mode"]], hook_ok = hook, hook_error = hookerr})
