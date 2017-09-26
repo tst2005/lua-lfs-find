@@ -9,5 +9,6 @@ if not pcall(require, "syscall.lfs") then local _ = require "syscall" end
 -- try to require syscall (in case of bundle, lfs will be preloaded)
 
 local lfs = require"syscall.lfs"
-local find = require"lfs-find"(lfs)
+local find = require"lfs-find"
+find.lfs = lfs
 require"testcode"(find, ...)
