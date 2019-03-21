@@ -4,11 +4,9 @@ if not pcall(require, "ffi") then
 	os.exit(1)
 end
 
--- if syscall.lfs is not available yet
-if not pcall(require, "syscall.lfs") then local _ = require "syscall" end
--- try to require syscall (in case of bundle, lfs will be preloaded)
+do local _ = require "for.lfs.use.syscall.lfs" end
+assert(require"lfs")
 
-local lfs = require"syscall.lfs"
-local find = require"lfs-find"
-find.lfs = lfs
+local find = require "lfs-find"
+
 require"testcode"(find, ...)

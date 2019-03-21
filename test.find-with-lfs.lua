@@ -1,4 +1,2 @@
-local lfs = require"lfs"
-local find = require"lfs-find"
-find.lfs = lfs
-require"testcode"(find, ...)
+local lfs = require "lfs"
+require"testcode"(require"lfs-find", ...)
